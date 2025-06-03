@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Board CRUD Todo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .input-section {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #task-input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .btn {
+      padding: 10px 15px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .column {
+      background-color: #dbd6d6;
+      border-radius: 5px;
+      padding: 15px;
+    }
+
+    .column-header {
+      border-bottom: 2px solid orangered;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+    }
+
+    .task-item {
+      background: white;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .task-text {
+      flex: 1;
+    }
+
+    .task-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Task Board CRUD Todo</h1>
+
+    <div class="input-section">
+      <input type="text" id="task-input" placeholder="Add a new task..." />
+      <button id="add-task-btn" class="btn">Add Task</button>
+    </div>
+
+    <div class="columns">
+      <div class="column" id="todo-column">
+        <h2 class="column-header">To Do</h2>
+        <div class="tasks-container" id="todo-tasks"></div>
+      </div>
+
+      <div class="column" id="in-progress-column">
+        <h2 class="column-header">In Progress</h2>
+        <div class="tasks-container" id="in-progress-tasks"></div>
+      </div>
+
+      <div class="column" id="completed-column">
+        <h2 class="column-header">Completed</h2>
+        <div class="tasks-container" id="completed-tasks"></div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-value" id="todo-count">0</div>
+        <div class="stat-label">To Do</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="in-progress-count">0</div>
+        <div class="stat-label">In Progress</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="completed-count">0</div>
+        <div class="stat-label">Completed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="total-count">0</div>
+        <div class="stat-label">Total</div>
+      </div>
+    </div>
+  </div>
+  <div><button onclick="sub"><a href="list.html">TABLE</a></button></div>
+  <script>
+    const input = document.getElementById('task-input');
+    const taskBtn = document.getElementById('add-task-btn');
+
+    const todos = document.getElementById('todo-tasks');
+    const inProgress = document.getElementById('in-progress-tasks');
+    const completed = document.getElementById('completed-tasks');
+
+    const todoCount = document.getElementById('todo-count');
+    const inProgressCount = document.getElementById('in-progress-count');
+    const completedCount = document.getElementById('completed-count');
+    const totalCount = document.getElementById('total-count');
+
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') taskBtn.click();
+    });
+
+    taskBtn.addEventListener('click', () => {
+      const text = input.value.trim();
+      if (text) {
+        const task = createTask(text);
+        todos.appendChild(task);
+        input.value = '';
+        updateCounters();
+      }
+    });
+
+    function createTask(text) {
+      const box = document.createElement('div');
+      box.className = 'task-item';
+
+      const taskText = document.createElement('div');
+      taskText.className = 'task-text';
+      taskText.textContent = text;
+
+      const actions = document.createElement('div');
+      actions.className = 'task-actions';
+
+      const move = document.createElement('button');
+      move.className = 'move-btn';
+      move.innerHTML = '&#8594;';
+      move.onclick = () => {
+        if (box.parentElement === todos) {
+          inProgress.appendChild(box);
+        } else if (box.parentElement === inProgress) {
+          completed.appendChild(box);
+        } else {
+          todos.appendChild(box);
+        }
+        updateCounters();
+      };
+
+      const edit = document.createElement('button');
+      edit.className = 'edit-btn';
+      edit.innerHTML = '&#9998;';
+      edit.onclick = () => {
+        const newText = prompt('Edit your task:', taskText.textContent);
+        if (newText) taskText.textContent = newText;
+      };
+
+      const del = document.createElement('button');
+      del.className = 'delete-btn';
+      del.innerHTML = '&#10006;';
+      del.onclick = () => {
+        box.remove();
+        updateCounters();
+      };
+
+      actions.appendChild(move);
+      actions.appendChild(edit);
+      actions.appendChild(del);
+
+      box.appendChild(taskText);
+      box.appendChild(actions);
+
+      return box;
+    }
+
+    function updateCounters() {
+      const count = (parent) => parent.querySelectorAll('.task-item').length;
+      todoCount.textContent = count(todos);
+      inProgressCount.textContent = count(inProgress);
+      completedCount.textContent = count(completed);
+      totalCount.textContent = count(todos) + count(inProgress) + count(completed);
+    }
+  </script>
+</body>
+</html>

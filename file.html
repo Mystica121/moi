@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to HTML</title>
+    <style>
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --container-bg: white;
+            --button-bg: #007bff;
+            --button-text: white;
+            --home-bg: #28a745;
+        }
+
+        body.dark-mode {
+            --bg-color: #1e1e1e;
+            --text-color: #ddd;
+            --container-bg: #2a2a2a;
+            --button-bg: #ff9800;
+            --button-text: #000;
+            --home-bg: #17a2b8;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: var(--container-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-color);
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        .app-link {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            background: var(--button-bg);
+            color: var(--button-text);
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .app-link:hover {
+            opacity: 0.8;
+        }
+
+        pre {
+            background: #222;
+            color: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        /* Floating Dark Mode Button */
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Custom Floating Home Button */
+        .home-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--home-bg);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .home-btn:hover {
+            background: #218838;
+            transform: scale(1.01);
+        }
+         /* Custom Floating typing Button */
+        .typingtech-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--home-bg);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, transform 0.2s;
+        }
+         /* Custom Floating style Button */
+        .stylewebsite-btn{
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--home-bg);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, transform 0.2s;  
+        }
+        
+            .button-container {
+  display: flex;
+  gap: 10px; /* Adds space between buttons */
+}
+
+.btn {
+  padding: 10px 20px;
+}
+
+        
+    </style>
+</head>
+<body>
+
+<!-- Floating Dark Mode Button -->
+<button class="toggle-btn" onclick="toggleMode()">🌙</button>
+
+<div class="container">
+    <h1>Introduction to HTML</h1>
+    <p><strong>HTML</strong> (Hyper Text Markup Language) is used to create web pages and web applications.</p>
+
+    <h2>What is HTML?</h2>
+    <p>HTML is made up of:</p>
+    <ul>
+        <li><strong>Hypertext:</strong> A way to link multiple web pages together.</li>
+        <li><strong>Markup Language:</strong> A system for formatting text using tags.</li>
+        <li><strong>Web Page:</strong> A document that browsers interpret to display content.</li>
+    </ul>
+
+    <h2>HTML Example</h2>
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Web Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Write Your First Heading&lt;/h1&gt;
+    &lt;p&gt;Write Your First Paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+
+    <h2>Brief History of HTML</h2>
+    <p>HTML was created by <strong>Tim Berners-Lee</strong> in the late 1980s. The first official description was released in 1991.</p>
+
+    <h2>HTML Versions</h2>
+    <ul>
+        <li><strong>HTML 1.0 (1991):</strong> The first version with basic elements.</li>
+        <li><strong>HTML 2.0 (1995):</strong> Introduced forms and text boxes.</li>
+        <li><strong>HTML 3.2 (1997):</strong> Added support for tables and mathematical equations.</li>
+        <li><strong>HTML 4.01 (1999):</strong> Improved support for stylesheets and multimedia.</li>
+        <li><strong>HTML5 (2008-Present):</strong> The latest version with better multimedia and mobile support.</li>
+    </ul>
+
+    <h2>Features of HTML</h2>
+    <ul>
+        <li>Simple and easy to learn.</li>
+        <li>Supports rich formatting with text, images, and links.</li>
+        <li>Allows the creation of interactive and dynamic content.</li>
+        <li>Works on all platforms (Windows, Linux, Mac).</li>
+        <li>Supports multimedia elements like videos, audio, and animations.</li>
+        <li>Case-insensitive: Tags can be written in uppercase or lowercase.</li>
+    </ul>
+</div>
+<div class="button-container">
+<!-- Custom Floating Home Button -->
+<a class="home-btn" href="path.html"> HTML Tags</a>
+
+
+<!-- Custom Floating typing Button -->
+<a class="typing-btn" href="second.html"> HTML typing</a>
+
+
+<!-- Custom Floating style Button -->
+<a class="btn" href="third.html"> HTML style</a>
+</div>
+
+
+
+    
+
+
+<script>
+    function toggleMode() {
+        document.body.classList.toggle('dark-mode');
+        let icon = document.querySelector('.toggle-btn');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.innerHTML = "☀️";
+        } else {
+            icon.innerHTML = "🌙";
+        }
+    }
+</script>
+
+</body>
+</html>

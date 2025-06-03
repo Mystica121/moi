@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Tags Reference</title>
+    <style>
+        /* Default Light Mode */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --container-bg: #f4f4f4;
+            --button-bg: #007bff;
+            --button-text: #fff;
+            --home-bg: #28a745;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --bg-color: #1e1e1e;
+            --text-color: #ddd;
+            --container-bg: #2a2a2a;
+            --button-bg: #ff9800;
+            --button-text: #000;
+            --home-bg: #17a2b8;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: var(--container-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-color);
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        /* Small Floating Dark Mode Button */
+        .toggle-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 35px;
+            height: 35px;
+            background: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Small Home Button */
+        .home-btn {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: var(--home-bg);
+            color: white;
+            padding: 8px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .home-btn:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating Dark Mode Button -->
+<button class="toggle-btn" onclick="toggleMode()">🌙</button>
+
+<div class="container">
+    <h1>HTML Tags Reference</h1>
+    <p>HTML tags define how web browsers format and display content. They distinguish between HTML and simple text.</p>
+
+    <h2>Basic HTML Tags</h2>
+    <ul>
+        <li><strong>Paragraph Tag:</strong> <code>&lt;p&gt;Text&lt;/p&gt;</code></li>
+        <li><strong>Heading Tags:</strong> <code>&lt;h1&gt;-&lt;h6&gt;</code></li>
+        <li><strong>Bold Tag:</strong> <code>&lt;b&gt;Bold&lt;/b&gt;</code></li>
+        <li><strong>Italic Tag:</strong> <code>&lt;i&gt;Italic&lt;/i&gt;</code></li>
+        <li><strong>Underline Tag:</strong> <code>&lt;u&gt;Underline&lt;/u&gt;</code></li>
+    </ul>
+
+    <h2>Unclosed HTML Tags</h2>
+    <ul>
+        <li><strong>Break Line:</strong> <code>&lt;br&gt;</code></li>
+        <li><strong>Horizontal Rule:</strong> <code>&lt;hr&gt;</code></li>
+    </ul>
+
+    <h2>Common HTML Tags</h2>
+    <ul>
+        <li><strong>Link Tags:</strong> <code>&lt;a&gt;</code> (anchor)</li>
+        <li><strong>Image Tags:</strong> <code>&lt;img&gt;</code></li>
+        <li><strong>Table Tags:</strong> <code>&lt;table&gt;, &lt;tr&gt;, &lt;td&gt;</code></li>
+        <li><strong>Form Tags:</strong> <code>&lt;form&gt;, &lt;input&gt;, &lt;button&gt;</code></li>
+        <li><strong>List Tags:</strong> <code>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</code></li>
+    </ul>
+
+    <h2>HTML Meta Tags</h2>
+    <p>Some important meta tags include:</p>
+    <ul>
+        <li><code>&lt;meta charset="UTF-8"&gt;</code> (Character Encoding)</li>
+        <li><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> (Responsive Design)</li>
+        <li><code>&lt;title&gt;Web Page Title&lt;/title&gt;</code> (Page Title)</li>
+    </ul>
+
+    <h2>HTML Scripting Tags</h2>
+    <ul>
+        <li><code>&lt;script&gt;</code> (For JavaScript)</li>
+        <li><code>&lt;noscript&gt;</code> (For non-JS fallback)</li>
+    </ul>
+
+    <h2>Complete List of HTML Tags</h2>
+    <p>if you need more information about HTML List tags you can check this link <a href="https://www.w3schools.com/tags/" target="_blank">W3Schools HTML Tags List</a>.</p>
+</div>
+
+<!-- Small Home Button -->
+<a class="home-btn" href="game.html">Home</a>
+
+<script>
+    function toggleMode() {
+        document.body.classList.toggle('dark-mode');
+        let icon = document.querySelector('.toggle-btn');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.innerHTML = "☀️";
+        } else {
+            icon.innerHTML = "🌙";
+        }
+    }
+</script>
+
+</body>
+</html>
